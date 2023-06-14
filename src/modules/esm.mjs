@@ -15,11 +15,11 @@ const random = Math.random();
 export let unknownObject;
 
 if (random > 0.5) {
-  unknownObject = await JSON.parse(
+  unknownObject = JSON.parse(
     await fs.readFile(join(__dirname, 'files/a.json'))
   );
 } else {
-  unknownObject = await JSON.parse(
+  unknownObject = JSON.parse(
     await fs.readFile(join(__dirname, 'files/b.json'))
   );
 }
