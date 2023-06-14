@@ -1,4 +1,4 @@
-import pc from 'node:process';
+import pc from 'process';
 
 const parseEnv = () => {
   const arr = [];
