@@ -3,9 +3,13 @@ import pc from 'process';
 const parseEnv = () => {
   const arr = [];
   const data = pc.env;
-  for (let i in data) {
-    if (i.includes('RSS_')) arr.push(`${i}=${data[i]}`);
-  }
+  const keys = Object.keys(data);
+
+  keys.forEach((key) => {
+    if (key.includes('RSS_')) {
+      arr.push(`${key}=${data[key]}`);
+    }
+  });
 
   console.log(arr.join('; '));
 };
