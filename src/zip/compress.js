@@ -1,4 +1,4 @@
-import fs from 'fs';
+import {createReadStream, createWriteStream} from 'fs';
 import { pipeline } from 'stream/promises';
 
 import { dirname, join } from 'path';
@@ -14,8 +14,8 @@ const GZ = 'archive.gz';
 const PATH_TO_FOLDER = join(__dirname, FOLDER);
 
 const compress = async () => {
-    const rs = fs.createReadStream(join(PATH_TO_FOLDER, FILE))
-    const ws = fs.createWriteStream(join(PATH_TO_FOLDER, GZ))
+    const rs = createReadStream(join(PATH_TO_FOLDER, FILE))
+    const ws = createWriteStream(join(PATH_TO_FOLDER, GZ))
     await pipeline(rs, createGzip(), ws)
 };
 

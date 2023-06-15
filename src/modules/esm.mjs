@@ -1,6 +1,5 @@
 import fs from 'fs/promises';
-import { join } from 'path';
-import path, { dirname } from 'path';
+import path, { dirname, join } from 'path';
 import { release, version } from 'os';
 import { createServer as createServerHttp } from 'http';
 import { fileURLToPath } from 'url';
