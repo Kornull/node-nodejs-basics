@@ -1,33 +1,28 @@
 import fs from 'fs/promises';
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
+import { join } from 'path';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { FOLDER, ERROR_MSG } from './constants.js';
+import { returnPathFolder } from './helper.js';
 
-const FOLDER = 'files';
-const COPY_FOLDER = 'files_copy';
-const PATH_TO_FOLDER = join(__dirname, FOLDER);
-const PATH_TO_NEW_FOLDER = join(__dirname, COPY_FOLDER);
+const copyFolder = 'files_copy';
+const pathFolder = returnPathFolder(FOLDER);
+const pathCopyFolder = returnPathFolder(copyFolder);
 
 const copy = async () => {
   try {
-    await fs.access(PATH_TO_FOLDER);
+    await fs.access(pathFolder);
     try {
-      await fs.access(PATH_TO_NEW_FOLDER);
+      await fs.access(pathCopyFolder);
       throw new Error();
     } catch {
-      await fs.mkdir(PATH_TO_NEW_FOLDER);
-      const files = await fs.readdir(PATH_TO_FOLDER);
+      await fs.mkdir(pathCopyFolder);
+      const files = await fs.readdir(pathFolder);
       files.forEach(async (file) => {
-        await fs.copyFile(
-          join(PATH_TO_FOLDER, file),
-          join(PATH_TO_NEW_FOLDER, file)
-        );
+        await fs.copyFile(join(pathFolder, file), join(pathCopyFolder, file));
       });
     }
   } catch {
-    throw new Error('FS operation failed');
+    throw new Error(ERROR_MSG);
   }
 };
 

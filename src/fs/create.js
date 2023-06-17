@@ -1,20 +1,18 @@
 import fs from 'fs/promises';
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { FOLDER, ERROR_MSG } from './constants.js';
+import { returnPathFile } from './helper.js';
 
-const FOLDER = 'files';
-const FILE = 'fresh.txt';
-const PATH_TO_FILE = join(__dirname, FOLDER, FILE);
-const MESSAGE = 'I am fresh and young';
+const fileName = 'fresh.txt';
+const msg = 'I am fresh and young';
+
+const filePath = returnPathFile(FOLDER, fileName)
 
 const create = async () => {
   try {
-    await fs.writeFile(PATH_TO_FILE, MESSAGE, { flag: 'wx' });
-  } catch (error) {
-    throw new Error('FS operation failed');
+    await fs.writeFile(filePath, msg, { flag: 'wx' });
+  } catch {
+    throw new Error(ERROR_MSG);
   }
 };
 

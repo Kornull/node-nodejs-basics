@@ -1,19 +1,16 @@
 import fs from 'fs/promises';
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import { FOLDER, ERROR_MSG } from './constants.js';
+import { returnPathFolder } from './helper.js';
 
-const FOLDER = 'files';
-const PATH_TO_FOLDER = join(__dirname, FOLDER);
+const folderPath = returnPathFolder(FOLDER);
 
 const list = async () => {
   try {
-    const listFiles = await fs.readdir(PATH_TO_FOLDER);
+    const listFiles = await fs.readdir(folderPath);
     console.log(listFiles);
   } catch {
-    throw new Error('FS operation failed');
+    throw new Error(ERROR_MSG);
   }
 };
 
