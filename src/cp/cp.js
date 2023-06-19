@@ -12,5 +12,4 @@ const spawnChildProcess = async (args) => {
   fork(pathToFile, args).on('message', (res) =>  process.stdout.write(res));
 };
 
-// Put your arguments in function call to test this functionality
 spawnChildProcess(['someArgument1', 'someArgument2', 'someArgument3']);
