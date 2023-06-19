@@ -1,5 +1,4 @@
 import { createReadStream } from 'fs';
-import process from 'process';
 import { pipeline } from 'stream/promises';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';

@@ -1,5 +1,4 @@
 import { createWriteStream } from 'fs';
-import process from 'process';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { pipeline } from 'stream/promises';

@@ -1,6 +1,5 @@
 import { Transform } from 'stream';
 import { pipeline } from 'stream/promises';
-import process from 'process';
 
 const transform = async () => {
   const streamTransform = new Transform({
